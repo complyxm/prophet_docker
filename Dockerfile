@@ -3,11 +3,11 @@ FROM ubuntu:16.04
 WORKDIR /app
 
 RUN apt-get -y update
-RUN apt-get -y install python3
-RUN apt-get -y install python3-pip
-RUN apt-get -y install python3-tk
-RUN pip3 install --upgrade pip3
-RUN pip3 install google-cloud-firestore
-RUN pip3 install requests
-RUN pip3 install pystan
-RUN pip3 install fbprophet
+RUN apt-get -y install python
+RUN apt-get -y install python-pip
+RUN apt-get -y install python-tk
+RUN pip install --upgrade pip
+RUN pip install google-cloud-firestore
+RUN pip install requests
+RUN pip install pystan
+RUN pip install fbprophet

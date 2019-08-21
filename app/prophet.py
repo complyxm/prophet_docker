@@ -12,15 +12,13 @@ def getPrice():
 
 # 現在時刻を取得しunixtimeに変換
 # Bitcoin現在価格を取得
-currentTime = datetime.now().strftime('%Y/%m/%d')
+currentTime = datetime.now().strftime('%Y/%m/%d').decode('unicode-escape')
 currentPrice = getPrice()
 
 data =  {
           'date' : '%s' % currentTime, 
           'rate' : '%s' % currentPrice
         }
-
-## APIによる価格取得はCloud Functionに移管予定
 
 # Firestoreの参照
 from google.cloud import firestore
@@ -30,7 +28,6 @@ db = firestore.Client()
 prices_ref = db.collection(u'prices')
 
 # pricesにデータを格納する
-# 価格データ追加はCloud Functionに移管予定
 prices_ref.add(data)
 
 # DBのprice collectionをjsonに変換する
@@ -53,12 +50,13 @@ model = Prophet(yearly_seasonality = True, weekly_seasonality = True, daily_seas
 
 # 予測モデルへのdf読み込み
 model.fit(df)
-future = model.make_future_dataframe(periods=30)
+future = model.make_future_dataframe(periods=5)
 forecast = model.predict(future)
 
 # 30日後の予測値と今日の価格を出力
 f = forecast['yhat'].tail(1).values[0]
 today = df['y'].tail(1).values[0]
+
 
 if f >= today:
    result = "本日の価格は %d で、１ヶ月後の価格は %d となり価格上昇傾向です" % (today,f)
@@ -66,6 +64,6 @@ else:
    result = "本日の価格は %d で、１ヶ月後の価格は %d となり価格下落傾向です" % (today,f)
 
 def printResult():
-   return result
+   print(result)
 
 printResult()
