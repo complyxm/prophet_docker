@@ -50,7 +50,7 @@ model = Prophet(yearly_seasonality = True, weekly_seasonality = True, daily_seas
 
 # 予測モデルへのdf読み込み
 model.fit(df)
-future = model.make_future_dataframe(periods=5)
+future = model.make_future_dataframe(periods=30)
 forecast = model.predict(future)
 
 # 30日後の予測値と今日の価格を出力
