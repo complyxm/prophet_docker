@@ -29,13 +29,18 @@ df_price = pd.read_json(pricelists_json)
 df_price = df_price.sort_values('date')
 df_today = df_price.iloc[-1]['rate'] #観測日当日のデータ
 
-print(df_today)
-print(df_date)
-print(df_forecast)
+if df_forecast >= df_today:
+   result = "本日の価格は %s で、１ヶ月後の価格は %s となり価格上昇傾向です" % (df_today,df_forecast)
+else:
+   result = "本日の価格は %s で、１ヶ月後の価格は %s となり価格下落傾向です" % (df_today,df_forecast)
+
+def printResult():
+   return result
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    printResult()
+    return render_template('index.html', result=result)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

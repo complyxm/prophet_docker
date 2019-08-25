@@ -81,16 +81,6 @@ forecasts_ref.add(data_f)
 f_int = int(f)
 today_int = int(today)
 
-if f_int >= today_int:
-   result = "本日の価格は %s で、１ヶ月後の価格は %s となり価格下落傾向です" % (today_int,f_int)
-else:
-   result = "本日の価格は %s で、１ヶ月後の価格は %s となり価格下落傾向です" % (today_int,f_int)
-
-def printResult():
-   print(result)
-
-printResult()
-
 # Test Set
 #print(data_f)
 #print(type(f))
