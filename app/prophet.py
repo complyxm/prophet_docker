@@ -69,9 +69,9 @@ today_unicode = str(today).decode('unicode-escape') #DB保存用にunicode化
 today_str = today_unicode.encode() #str化
 
 # 予測価格を格納するためのデータセット
-data_f =  {
+data_f =  { 
            'date' : '%s' % ds_f_unicode, 
-           'forecast' : '%s' % f_unicode
+           'forecast' : '%s' % f_unicode,
           }
 
 # DBのforecasts collectionを参照する
