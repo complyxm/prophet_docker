@@ -11,3 +11,4 @@ RUN pip install google-cloud-firestore
 RUN pip install requests
 RUN pip install pystan
 RUN pip install fbprophet
+RUN pip install flask
