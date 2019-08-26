@@ -35,11 +35,12 @@ else:
    result = "本日の価格は %s で、１ヶ月後の価格は %s となり価格下落傾向です" % (df_today,df_forecast)
 
 def printResult():
-   return result
+   result_unicode = result.decode('utf-8')
+   return result_unicode
 
 @app.route('/')
 def index():
-    printResult()
+    result = printResult()
     return render_template('index.html', result=result)
 
 if __name__ == '__main__':
